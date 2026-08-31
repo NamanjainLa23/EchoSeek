@@ -6,6 +6,7 @@ import { forwardRef, useImperativeHandle } from 'react';
 
 const EASE = [0.16, 1, 0.3, 1];
 const RADIUS = 22;
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8001";
 
 const HERO = {
   title: "TYLER PERRY'S THE OVAL",
@@ -116,7 +117,7 @@ const useSpeech = (videoId, setSearchQuery, pauseVideo, setPlayerUrl, setCurrent
 
       // Send to backend or AWS Transcribe
       if (final) {
-        fetch("http://localhost:8000/api/process_voice", {
+        fetch(`${API_BASE}/api/process_voice`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ 
@@ -546,7 +547,7 @@ export const PlayerOverlay = React.memo(forwardRef(({ url, onClose, seekTo = nul
                     <button
                       onClick={() => {
                         const currentTime = played * duration;
-                        fetch("http://localhost:8000/api/recap", {
+                        fetch(`${API_BASE}/api/recap`, {
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({ video_id: currentVideoId, timestamp: Math.floor(currentTime) }),

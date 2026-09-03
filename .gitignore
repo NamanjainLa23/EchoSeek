@@ -1,5 +1,9 @@
 old_data_bedrock/
 venv/
+tivoos-demo/data/
+tivoos-demo/captions/
+tivoos-demo/server/captions/
+tivoos-demo/server/static
 node_modules/
 /.pnp
 .pnp.js
